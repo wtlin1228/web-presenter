@@ -1,0 +1,17 @@
+{
+  "name": "web-presenter",
+  "version": "0.0.0-development",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": "wtlin1228",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.6.4",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
