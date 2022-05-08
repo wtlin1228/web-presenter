@@ -3,12 +3,15 @@ const path = require('path');
 module.exports = {
   mode: 'production',
   entry: {
-    epicker: './src/epicker.ts',
     demo: './src/demo/index.ts',
+    background: './src/js/background.ts',
+    popup: './src/js/popup.ts',
+    contentscript: './src/js/scriptlet/contentscript.ts',
+    epicker: './src/js/scriptlet/epicker.ts',
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'build'),
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist/build/js'),
   },
   module: {
     rules: [
