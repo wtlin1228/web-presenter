@@ -3,11 +3,10 @@ const path = require('path');
 module.exports = {
   mode: 'production',
   entry: {
-    demo: './src/demo/index.ts',
-    background: './src/js/background.ts',
-    popup: './src/js/popup.ts',
-    contentscript: './src/js/scriptlet/contentscript.ts',
-    epicker: './src/js/scriptlet/epicker.ts',
+    background: path.resolve(__dirname, 'src/js/background.ts'),
+    popup: path.resolve(__dirname, 'src/js/popup.ts'),
+    contentscript: path.resolve(__dirname, 'src/js/scriptlet/contentscript.ts'),
+    epicker: path.resolve(__dirname, 'src/js/scriptlet/epicker.ts'),
   },
   output: {
     filename: '[name].js',
