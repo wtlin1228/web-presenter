@@ -1,7 +1,7 @@
 {
   "name": "Web Presenter",
   "description": "No screenshots for slide anymore. Present your website directly.",
-  "version": "1.0",
+  "version": "0.0.1",
   "manifest_version": 3,
   "minimum_chrome_version": "92",
   "background": {
