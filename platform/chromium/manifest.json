@@ -12,15 +12,15 @@
   "action": {
     "default_popup": "html/popup.html",
     "default_icon": {
-      "16": "/images/una-bird-16.png",
-      "32": "/images/una-bird-32.png",
-      "48": "/images/una-bird-48.png",
-      "128": "/images/una-bird-128.png"
+      "16": "/img/una-bird-16.png",
+      "32": "/img/una-bird-32.png",
+      "48": "/img/una-bird-48.png",
+      "128": "/img/una-bird-128.png"
     }
   },
   "content_scripts": [
     {
-      "js": ["contentscript.js"],
+      "js": ["js/contentscript.js"],
       "matches": ["<all_urls>"],
       "run_at": "document_end"
     }

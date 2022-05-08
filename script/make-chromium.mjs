@@ -1,5 +1,6 @@
 #!/usr/bin/env zx
 
+await $`npm install`;
 await $`npm run build`;
 
 console.log('*** WebPresenter.chromium: Creating web store package');
