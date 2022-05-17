@@ -3,6 +3,10 @@ import getCurrentTab from './utils/get-current-tab';
 
 const slidesContainer = document.getElementById('slides-container');
 
+function closePopup() {
+  window.close();
+}
+
 function handleSelectorClick(e: MouseEvent) {
   let step = (e.target as HTMLElement).dataset.step;
 
@@ -51,6 +55,8 @@ document.getElementById('goto-pick')?.addEventListener('click', () => {
         type: 'START_ELEMENT_PICKER',
         payload: {},
       });
+
+      closePopup();
     }
   });
 });
