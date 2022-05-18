@@ -201,6 +201,9 @@ chrome.runtime.onMessage.addListener(function (
       webPresenter.updateSlides(request.payload.slides);
       return;
 
+    case 'CLEAR_SLIDES':
+      webPresenter.clearSlides();
+
     default:
       return;
   }

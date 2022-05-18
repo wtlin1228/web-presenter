@@ -121,6 +121,7 @@ export default class WebPresenter {
   public clearSlides() {
     this.step = 0;
     this.slides = [];
+    this.hideFrame();
   }
 
   /************************************************************/

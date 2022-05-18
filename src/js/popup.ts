@@ -75,3 +75,16 @@ document.getElementById('sync-slides')?.addEventListener('click', () => {
     });
   });
 });
+
+document.getElementById('clear-slides')?.addEventListener('click', () => {
+  chrome.storage.sync.set({ slides: [] });
+  slidesContainer?.replaceChildren();
+  getCurrentTab().then((tab) => {
+    if (tab && tab.id) {
+      chrome.tabs.sendMessage(tab.id, {
+        type: 'CLEAR_SLIDES',
+        payload: {},
+      });
+    }
+  });
+});
