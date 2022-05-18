@@ -1,10 +1,20 @@
 body {
   margin: 0;
+  border: 2px solid white;
   background-color: #2c3453;
 }
 
+.divider {
+  height: 1px;
+  background-color: #ffffff3d;
+}
+
 #toolbar {
-  margin-bottom: 6px;
+  padding: 6px;
+}
+
+#toolbar .tool:not(:last-child) {
+  margin-inline-end: 3px;
 }
 
 .tool svg {
@@ -20,6 +30,13 @@ body {
   color: #c3cbdf;
 }
 
+#slides-container-placeholder {
+  height: 200px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .selector {
   padding: 2px 18px;
   display: flex;
@@ -33,5 +50,5 @@ body {
 }
 
 .selector-name {
-  margin-left: 12px;
+  margin-inline-start: 12px;
 }

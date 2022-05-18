@@ -2,6 +2,9 @@ import type { ISlide } from './types';
 import getCurrentTab from './utils/get-current-tab';
 
 const slidesContainer = document.getElementById('slides-container');
+const slidesContainerPlaceholder = document.createElement('div');
+slidesContainerPlaceholder.id = 'slides-container-placeholder';
+slidesContainerPlaceholder.innerText = 'No Slide. Create one first.';
 
 function closePopup() {
   window.close();
@@ -18,6 +21,26 @@ function handleSelectorClick(e: MouseEvent) {
       });
     }
   });
+}
+
+function showSlidesContainerPlaceholder() {
+  if (
+    document.getElementById('slides-container-placeholder') ||
+    !slidesContainer
+  ) {
+    return;
+  }
+
+  slidesContainer.appendChild(slidesContainerPlaceholder);
+}
+
+function hideSlidesContainerPlaceholder() {
+  const elementToRemove = document.getElementById(
+    'slides-container-placeholder'
+  );
+  if (elementToRemove) {
+    elementToRemove.remove();
+  }
 }
 
 function createSlides(slides: ISlide[]) {
@@ -45,7 +68,12 @@ function createSlides(slides: ISlide[]) {
 }
 
 chrome.storage.sync.get(['slides'], ({ slides }) => {
-  createSlides(slides);
+  if (slides.length > 0) {
+    hideSlidesContainerPlaceholder();
+    createSlides(slides);
+  } else {
+    showSlidesContainerPlaceholder();
+  }
 });
 
 document.getElementById('goto-pick')?.addEventListener('click', () => {
@@ -79,6 +107,7 @@ document.getElementById('sync-slides')?.addEventListener('click', () => {
 document.getElementById('clear-slides')?.addEventListener('click', () => {
   chrome.storage.sync.set({ slides: [] });
   slidesContainer?.replaceChildren();
+  showSlidesContainerPlaceholder();
   getCurrentTab().then((tab) => {
     if (tab && tab.id) {
       chrome.tabs.sendMessage(tab.id, {
