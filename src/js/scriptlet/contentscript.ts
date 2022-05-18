@@ -56,7 +56,7 @@ const createDisplayNameInput = () => {
   input.style.padding = '1px 8px';
   input.style.cursor = 'text';
   input.style.fontSize = '16px';
-  input.style.fontWeight = '700';
+  input.style.fontWeight = '500';
   input.style.lineHeight = '24px';
   input.style.borderRadius = '0';
 
@@ -111,6 +111,8 @@ const createCreateButton = (displayNameInput: HTMLInputElement) => {
         querySelector,
         shortcut: '',
       });
+
+      displayNameInput.value = '';
     }
   };
 
@@ -168,8 +170,6 @@ const destroyPicker = () => {
 const handleInputChange = (e: Event) => {
   // @ts-expect-error
   const index = e.target.value;
-
-  console.log(index, candidates[index]);
 
   const elementToHighlight = document.querySelector(candidates[index]);
   if (elementToHighlight) {
