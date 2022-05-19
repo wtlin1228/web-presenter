@@ -265,24 +265,29 @@ chrome.runtime.onMessage.addListener(function (
   switch (request.type) {
     case 'START_ELEMENT_PICKER':
       startElementPicker();
-      return;
+      break;
 
     case 'STOP_ELEMENT_PICKER':
       stopElementPicker();
-      return;
+      break;
 
     case 'GO_SLIDE':
       webPresenter.goStep(request.payload.step);
-      return;
+      break;
 
     case 'UPDATE_SLIDE':
       webPresenter.updateSlides(request.payload.slides);
-      return;
+      break;
 
     case 'CLEAR_SLIDES':
       webPresenter.clearSlides();
+      break;
 
     default:
-      return;
   }
+
+  // Fix Chrome: "The message port closed before a response was received."
+  // See: https://github.com/mozilla/webextension-polyfill/issues/130
+  sendResponse({});
+  return true;
 });
