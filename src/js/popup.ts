@@ -10,14 +10,25 @@ function closePopup() {
   window.close();
 }
 
-function handleSelectorClick(e: MouseEvent) {
-  let step = (e.target as HTMLElement).dataset.step;
-
+function goSlide(step: number) {
   getCurrentTab().then((tab) => {
     if (tab && tab.id) {
       chrome.tabs.sendMessage(tab.id, {
         type: 'GO_SLIDE',
         payload: { step },
+      });
+    }
+  });
+}
+
+function updateSlides(newSlides: ISlide[]) {
+  getCurrentTab().then((tab) => {
+    if (tab && tab.id) {
+      chrome.tabs.sendMessage(tab.id, {
+        type: 'UPDATE_SLIDE',
+        payload: {
+          slides: newSlides,
+        },
       });
     }
   });
@@ -62,7 +73,21 @@ function createSlides(slides: ISlide[]) {
     nameText.innerText = displayName;
     slideDiv.appendChild(nameText);
 
-    slideDiv.addEventListener('click', handleSelectorClick);
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('delete-selector-button');
+    deleteButton.innerText = 'x';
+    deleteButton.onclick = () => {
+      if (slideDiv) {
+        slideDiv.remove();
+      }
+
+      const newSlides = slides.filter((_, i) => i !== index);
+      chrome.storage.sync.set({ slides: newSlides });
+      updateSlides(newSlides);
+    };
+    slideDiv.appendChild(deleteButton);
+
+    slideDiv.addEventListener('click', () => goSlide(index));
     slidesContainer.appendChild(slideDiv);
   });
 }
@@ -91,16 +116,7 @@ document.getElementById('goto-pick')?.addEventListener('click', () => {
 
 document.getElementById('sync-slides')?.addEventListener('click', () => {
   chrome.storage.sync.get(['slides'], ({ slides }) => {
-    getCurrentTab().then((tab) => {
-      if (tab && tab.id) {
-        chrome.tabs.sendMessage(tab.id, {
-          type: 'UPDATE_SLIDE',
-          payload: {
-            slides,
-          },
-        });
-      }
-    });
+    updateSlides(slides);
   });
 });
 

@@ -56,4 +56,10 @@ body {
 
 .selector-name {
   margin-inline-start: 12px;
+  flex-grow: 1;
+}
+
+.delete-selector-button:hover {
+  background-color: #eb392984;
+  font-weight: 700;
 }
