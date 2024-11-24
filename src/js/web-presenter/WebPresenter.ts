@@ -60,7 +60,8 @@ export default class WebPresenter {
     const frame = document.createElement('div');
 
     frame.style.display = 'none';
-    frame.style.zIndex = '1024';
+    // intentionally to use maximum value for z-index for presenting
+    frame.style.zIndex = '2147483647';
     frame.style.inset = '0px';
     frame.style.position = 'fixed';
     frame.style.background = 'rgba(0, 0, 0, 0.6)';
