@@ -1,7 +1,7 @@
 {
   "name": "Web Presenter",
   "description": "No screenshots for slide anymore. Present your website directly.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "manifest_version": 3,
   "minimum_chrome_version": "92",
   "background": {
@@ -12,10 +12,10 @@
   "action": {
     "default_popup": "html/popup.html",
     "default_icon": {
-      "16": "/img/una-bird-16.png",
-      "32": "/img/una-bird-32.png",
-      "64": "/img/una-bird-64.png",
-      "128": "/img/una-bird-128.png"
+      "16": "img/una-bird-16.png",
+      "32": "img/una-bird-32.png",
+      "64": "img/una-bird-64.png",
+      "128": "img/una-bird-128.png"
     }
   },
   "content_scripts": [
