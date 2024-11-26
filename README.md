@@ -11,3 +11,9 @@ No screenshots for slide anymore. Present your website directly.
 - [ ] import/export slides
 - [ ] group slides by tab's url
 - [ ] ...
+
+## Release
+
+1. `$ npm run make:chromium`
+2. `$ cd dist/build/WebPresenter.chromium`
+3. `$ zip -r <version>.zip .`
